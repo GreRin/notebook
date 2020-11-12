@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
-import { MenuItem } from 'primeng/api';
+import { Message, PrimeNGConfig } from 'primeng/api';
+import { ConfirmationService } from 'primeng/api';
 
 @Component({
   selector: 'app-header',
@@ -9,31 +9,27 @@ import { MenuItem } from 'primeng/api';
 })
 export class HeaderComponent implements OnInit {
 
-  items: MenuItem[];
+  msgs: Message[] = [];
+
+  position: string;
+
+  constructor(private confirmationService: ConfirmationService, private primengConfig: PrimeNGConfig) {}
 
   ngOnInit() {
-      this.items = [
-          {
-              label: 'File',
-              items: [{
-                      label: 'New', 
-                      icon: 'pi pi-fw pi-plus',
-                      items: [
-                          {label: 'Project'},
-                          {label: 'Other'},
-                      ]
-                  },
-              ]
-          },
-          {
-              label: 'Edit',
-              icon: 'pi pi-fw pi-pencil',
-              items: [
-                  {label: 'Delete', icon: 'pi pi-fw pi-trash'},
-                  {label: 'Refresh', icon: 'pi pi-fw pi-refresh'}
-              ]
-          }
-      ];
+    this.primengConfig.ripple = true;
   }
 
+  confirm() {
+    this.confirmationService.confirm({
+        message: 'Are you sure that you want to proceed?',
+        header: 'Confirmation',
+        icon: 'pi pi-exclamation-triangle',
+        accept: () => {
+            this.msgs = [{severity:'info', summary:'Confirmed', detail:'You have accepted'}];
+        },
+        reject: () => {
+            this.msgs = [{severity:'info', summary:'Rejected', detail:'You have rejected'}];
+        }
+    });
+  }
 }
