@@ -1,0 +1,33 @@
+.wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 90vh;
+}
+
+main {
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	width: 100%;
+	height: 90vh;
+}
+
+.main-wrapper {
+	width: 100%;
+}
+
+.form {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.color-picker {
+	top: -5px !important;
+	right: 200px !important;
+}
