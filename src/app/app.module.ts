@@ -9,6 +9,7 @@ import { MenubarModule } from 'primeng/menubar';
 import { ButtonModule } from 'primeng/button';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { ConfirmationService } from 'primeng/api';
     MenubarModule,
     ButtonModule,
     ConfirmDialogModule,
+    BrowserAnimationsModule
   ],
   providers: [
     ConfirmationService
