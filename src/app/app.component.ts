@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,5 +8,12 @@ import { Component } from '@angular/core';
 })
 
 export class AppComponent {
-  title = 'notebookcopy';
+  constructor (
+		private router: Router,
+		private ngzone: NgZone
+	) {}
+
+  	ngOnInit() {
+		this.ngzone.run(() => this.router.navigate(['/main']));
+	}
 }

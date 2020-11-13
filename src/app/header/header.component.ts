@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Message, PrimeNGConfig } from 'primeng/api';
 import { ConfirmationService } from 'primeng/api';
+import { Message, PrimeNGConfig } from 'primeng/api';
 
 @Component({
   selector: 'app-header',
@@ -22,13 +22,12 @@ export class HeaderComponent implements OnInit {
   confirm() {
     this.confirmationService.confirm({
         message: 'Are you sure that you want to proceed?',
-        header: 'Confirmation',
-        icon: 'pi pi-exclamation-triangle',
+        header: 'Add new contact',
         accept: () => {
-            this.msgs = [{severity:'info', summary:'Confirmed', detail:'You have accepted'}];
+            this.msgs = [{severity:'info', summary:'Congratulation!', detail:'New user added!'}];
         },
         reject: () => {
-            this.msgs = [{severity:'info', summary:'Rejected', detail:'You have rejected'}];
+            this.msgs = [{severity:'info', summary:'Sorry!', detail:'Something goes wrong :('}];
         }
     });
   }
