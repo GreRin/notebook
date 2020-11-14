@@ -1,3 +1,10 @@
-:host ::ng-deep button {
-    margin-right: .25em;
+.ui-menubar-root-list {
+    padding-left:32px;
+}
+
+img#logo {
+    position:absolute;
+    left:20px;
+    height: 48px;
+    transform: translateY(-5px);
 }

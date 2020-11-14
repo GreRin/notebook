@@ -10,7 +10,6 @@ import { Message, PrimeNGConfig } from 'primeng/api';
 export class HeaderComponent implements OnInit {
 
   msgs: Message[] = [];
-
   position: string;
 
   constructor(private confirmationService: ConfirmationService, private primengConfig: PrimeNGConfig) {}
