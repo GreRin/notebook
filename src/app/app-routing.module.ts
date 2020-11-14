@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { MainPageComponent } from './main-page/main-page.component';
-import { NotFoundPageComponent } from './not-found-page/not-found-page.component';
-import { UserProfileComponent } from './user-profile/user-profile.component';
+import { MainPageComponent } from './components/main-page/main-page.component';
+import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 const routes: Routes = [
   { path: 'user', component: UserProfileComponent, pathMatch: 'full' },
