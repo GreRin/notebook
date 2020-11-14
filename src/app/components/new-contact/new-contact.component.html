@@ -7,7 +7,7 @@
     aria-hidden="false"
 >
     <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
+        <div class="modal-content p-shadow-22">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">New contact</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -16,30 +16,36 @@
             </div>
             <div class="modal-body">
                 <form [formGroup]="newUserForm" validate (ngSubmit)="onSubmit(newUserForm.value)">
-                    <div class="p-formgroup-inline">
-                        <div class="p-field">
-                            <label for="firstname" class="p-sr-only">Firstname</label>
-                            <input id="firstname" type="text" pInputText placeholder="Firstname/Surname" formControlName="name"> 
-                        </div>
-                        <div class="p-field">
-                            <label for="firstname" class="p-sr-only">Priority phone</label>
-                            <input id="firstname" type="text" pInputText placeholder="Priority phone" formControlName="phone"> 
-                        </div>
-                        <div class="p-field">
-                            <label for="firstname" class="p-sr-only">Priority email</label>
-                            <input id="firstname" type="text" pInputText placeholder="Priority email" formControlName="email"> 
-                        </div>
+                    <div class="ui-fluid">
+                        <span class="p-float-label p-mb-3">
+                            <input id="firstname" type="text" pInputText formControlName="name" style="width: 100%"> 
+                            <label for="firstname">Username</label>
+                        </span>
+                        <span class="p-float-label p-mb-3">
+                            <input id="phone" type="text" pInputText formControlName="phone" style="width: 100%"> 
+                            <label for="phone">Priority phone</label>
+                        </span>
+                        <span class="p-float-label">
+                            <input id="email" type="text" pInputText formControlName="email" style="width: 100%"> 
+                            <label for="email">Priority email</label>
+                        </span>
+                    </div>
+                    <div class="modal-footer">
+                        <button pButton 
+                                type="submit" 
+                                label="Submit" 
+                                data-toggle="modal" 
+                                [disabled]="!newUserForm.valid"
+                                (click)="closePopup()"
+                        ></button>
+                        <button pButton 
+                                type="text" 
+                                label="Cansel" 
+                                class="p-button-danger"
+                                data-dismiss="modal"
+                        ></button>
                     </div>
                 </form>
-            </div>
-            <div class="modal-footer">
-                <button pButton 
-                        type="submit" 
-                        label="Submit" 
-                        data-toggle="modal" 
-                        [disabled]="!newUserForm.valid"
-                ></button>
-                <button pButton type="text" label="Cansel" class="p-button-danger" data-dismiss="modal"></button>
             </div>
         </div>
     </div>
