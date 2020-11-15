@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore  } from '@angular/fire/firestore';
+import { Observable } from 'rxjs/internal/Observable';
 import { UserData } from '../../common/utils/user';
 
 @Injectable({
@@ -16,7 +17,7 @@ export class CrudService {
     	return this.firestore.collection('users').add(value);
 	}
 
-	getUsers() {
+	getUsers(): Observable<any> {
     	return this.firestore.collection('users').snapshotChanges();
 	}
 

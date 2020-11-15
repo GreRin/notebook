@@ -2,8 +2,7 @@
   <section class="questions">
     <div class="row">
       <div class="row card"
-           [routerLink]="['/main', question.id]"
-           *ngFor="let user of userData | async"                                 
+           *ngFor="let user of userData"                                 
       >
         <div class="card-body">
           <h5 class="card-title">{{  user.name }}</h5>

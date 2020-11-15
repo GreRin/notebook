@@ -21,8 +21,13 @@ export class MainPageComponent implements OnInit {
   }
 
   getDataFromDatabase() {
-		// this.crudService.getUsers()
-		// .subscribe(result => this.userData = result),
-    // error => { error.message; console.log("Something wrong with data!" + error) };
+		this.crudService.getUsers()
+		.subscribe(result => this.userData = result.map(item => {
+      return {
+        id: item.payload.doc.id,
+        ...item.payload.doc.data() as UserData
+      }}
+    )),
+    error => { error.message; console.log("Something wrong with data!" + error) };
 	}
 }
