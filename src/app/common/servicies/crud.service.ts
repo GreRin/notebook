@@ -25,7 +25,7 @@ export class CrudService {
 	// 	this.firestore.doc(`users/${editableQuestion.id}`).update(editableQuestion);
 	// }
 
-	// deleteUser(questionId) {
-	// 	this.firestore.collection('users').doc(questionId).delete();
-	// }
+	deleteUser(userId) {
+		this.firestore.collection('users').doc(userId).delete();
+	}
 }
