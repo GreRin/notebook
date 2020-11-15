@@ -17,7 +17,7 @@ export class CrudService {
 	}
 
 	getUsers() {
-    	return this.firestore.collection('users').valueChanges();
+    	return this.firestore.collection('users').snapshotChanges();
 	}
 
 	// updateUser(editableQuestion) {
