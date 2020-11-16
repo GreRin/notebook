@@ -1,17 +1,18 @@
-import { Component, OnChanges, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 import { CrudService } from 'src/app/common/servicies/crud.service';
 import { UserData } from 'src/app/common/utils/user';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { createLessThan } from 'typescript';
 
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
   styleUrls: ['./user-profile.component.css']
 })
-export class UserProfileComponent implements OnInit, OnChanges {
+export class UserProfileComponent implements OnInit {
   userForm: boolean = false;
   users: UserData[];
   user: UserData;
@@ -20,6 +21,7 @@ export class UserProfileComponent implements OnInit, OnChanges {
   submitted: boolean;
   
   constructor(
+    private router: Router,
 		private route: ActivatedRoute,
     public crudService: CrudService,
     private messageService: MessageService,
@@ -57,11 +59,9 @@ export class UserProfileComponent implements OnInit, OnChanges {
         header: 'Confirm',
         icon: 'pi pi-exclamation-triangle',
         accept: () => {
-            this.crudService.deleteUser(this.user.id);
-            this.users = this.users.filter(val => val.id !== user.id);
-            this.user = {};
+            this.crudService.deleteUser(this.id);
             this.messageService.add({severity:'success', summary: 'Successful', detail: 'User Deleted', life: 3000});
-        }
+        },
     });
   }
 
