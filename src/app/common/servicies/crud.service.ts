@@ -17,7 +17,7 @@ export class CrudService {
     	return this.firestore.collection('users').add(value);
 	}
 
-	getUsers(): Observable<any> {
+	getUsers() {
     	return this.firestore.collection('users').snapshotChanges();
 	}
 

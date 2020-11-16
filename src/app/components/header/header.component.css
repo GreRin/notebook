@@ -4,7 +4,8 @@
 
 img#logo {
     position:absolute;
-    left:20px;
+    left:15px;
     height: 48px;
     transform: translateY(-5px);
+    cursor: pointer;
 }

@@ -7,7 +7,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 const routes: Routes = [
   { path: 'user', component: UserProfileComponent, pathMatch: 'full' },
   { path: 'main', component: MainPageComponent, pathMatch: 'full' },
-  // { path: 'main/:id', component: QuestionComponent, pathMatch: 'full' },
+  { path: 'main/:id', component: UserProfileComponent, pathMatch: 'full' },
   { path: '**', component: NotFoundPageComponent }
 ];
 

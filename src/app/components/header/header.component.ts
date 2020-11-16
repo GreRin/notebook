@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ConfirmationService } from 'primeng/api';
-import { Message, PrimeNGConfig } from 'primeng/api';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -9,25 +8,14 @@ import { Message, PrimeNGConfig } from 'primeng/api';
 })
 export class HeaderComponent implements OnInit {
 
-  msgs: Message[] = [];
-  position: string;
 
-  constructor(private confirmationService: ConfirmationService, private primengConfig: PrimeNGConfig) {}
+  constructor(
+    private router: Router
+  ) {}
 
-  ngOnInit() {
-    this.primengConfig.ripple = true;
-  }
+  ngOnInit() {}
 
-  confirm() {
-    this.confirmationService.confirm({
-        message: 'Are you sure that you want to proceed?',
-        header: 'Add new contact',
-        accept: () => {
-            this.msgs = [{severity:'info', summary:'Congratulation!', detail:'New user added!'}];
-        },
-        reject: () => {
-            this.msgs = [{severity:'info', summary:'Sorry!', detail:'Something goes wrong :('}];
-        }
-    });
+  goToMainPage() {
+    this.router.navigate(['/main']);
   }
 }

@@ -1,25 +1,4 @@
-<!-- <div class="main-wrapper">
-  <section class="questions">
-    <div class="row">
-      <div class="row card"
-           *ngFor="let user of users"                                 
-      >
-        <div class="card-body">
-          <h5 class="card-title">{{  user.name }}</h5>
-          <div class="card-wrapper">
-            <div class="line"></div>
-            <div class="card-category-date">
-              <p class="card-text" >{{  user.phone }}</p>
-              <p class="card-text" >{{  user.email }}</p>
-            </div>
-          </div>
-        </div>
-        <div class="line-bottom"></div>
-      </div>
-    </div>
-  </section>
-</div>
-<app-new-contact></app-new-contact> -->
+<app-new-contact></app-new-contact>
 
 <p-toast></p-toast>
 <div class="card">
@@ -31,15 +10,11 @@
                 <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
             </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-user>
-            <tr>
+        <ng-template pTemplate="body" let-user >
+            <tr [routerLink]="['/main', user.id]">
                 <td>{{ user.name }}</td>
                 <td>{{ user.phone }}</td>
                 <td>{{ user.email }}</td>
-                <td>
-                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editUser(user)"></button>
-                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteUser(user)"></button>
-                </td>
             </tr>
         </ng-template>
         <ng-template pTemplate="summary">
@@ -49,12 +24,3 @@
         </ng-template>
     </p-table>
 </div>
-
-<p-dialog [(visible)]="userDialog" [style]="{width: '450px'}" header="User Details" [modal]="true" styleClass="p-fluid">    
-    <ng-template pTemplate="footer">
-        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
-        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveUser()"></button>
-    </ng-template>
-</p-dialog>
-
-<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
