@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore  } from '@angular/fire/firestore';
-import { Observable } from 'rxjs/internal/Observable';
 import { UserData } from '../../common/utils/user';
 
 @Injectable({
@@ -21,8 +20,8 @@ export class CrudService {
     	return this.firestore.collection('users').snapshotChanges();
 	}
 
-	updateUser(editableUser) {
-		this.firestore.doc(`users/${editableUser.id}`).update(editableUser);
+	updateUser(editableUser, id) {
+		this.firestore.doc(`users/${id}`).update(editableUser);
 	}
 
 	deleteUser(userId) {

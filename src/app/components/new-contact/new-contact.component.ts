@@ -36,10 +36,10 @@ export class NewContactComponent implements OnInit {
 
   createNewQuestion() {
 		this.newUserForm = new FormGroup({
-      name: new FormControl("", [Validators.pattern(/[A-z]/)]),
+      name: new FormControl("", [Validators.pattern(/[A-z]/), Validators.required]),
       birth: new FormControl(""),
-      phone1: new FormControl("", [Validators.pattern(/[0-9]/)]),
-      phone2: new FormControl("", [Validators.pattern(/[0-9]/)]),
+      phone1: new FormControl("", [Validators.pattern(/[0-9]/), Validators.required]),
+      phone2: new FormControl("", [Validators.pattern(/[0-9]/), Validators.required]),
       email1: new FormControl("", [Validators.email]),
       email2: new FormControl("", [Validators.email]),
       adress: new FormControl(""),
@@ -50,11 +50,11 @@ export class NewContactComponent implements OnInit {
 	onSubmit(value) {
     this.isSubmitted = true;
     if (!this.newUserForm.valid) {
-      return false;""
+      return false;
     }
     this.userData = {
       name: value.name,
-      birth: new Date(value.birth),
+      birth: value.birth,
       phone1: value.phone1,
       phone2: value.phone2,
       email1: value.email1,

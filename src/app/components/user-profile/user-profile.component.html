@@ -1,6 +1,6 @@
 <p-toast></p-toast>
 <div class="card">
-    <p-table #dt [value]="users">
+    <p-table #dt [value]="currentUser">
         <ng-template pTemplate="header">
             <tr>
                 <th>Name</th>
@@ -34,80 +34,83 @@
                 <td>{{ user.adress }}</td>
                 <td>{{ user.postcode }}</td>
                 <td>
-                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editUser(user)"></button>
-                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteUser(user)"></button>
+                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editUser()"></button>
+                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteUser()"></button>
                 </td>
             </tr>
         </ng-template>
     </p-table>
 </div>
 
-<p-dialog [(visible)]="userForm" [style]="{width: '450px'}" header="User Details" [modal]="true" styleClass="p-fluid">   
+<p-dialog [(visible)]="userForm" [style]="{width: '450px'}" header="User Details" [modal]="submitted" styleClass="p-fluid">   
     <ng-template pTemplate="content">
-        <div class="ui-fluid">
-            <div class="p-fluid p-formgrid p-grid">
-                <div class="p-field p-col">
-                    <div class="p-inputgroup">
-                        <input type="text" pInputText id="name" [(ngModel)]="user.name" required autofocus />
-                        <small class="p-invalid" *ngIf="submitted && !user.name">Name is required.</small>       
+        <form [formGroup]="editUserForm" validate (ngSubmit)="onSubmit(editUserForm.value)">
+            <div class="ui-fluid">
+                <div class="p-fluid p-formgrid p-grid">
+                    <div class="p-field p-col">
+                        <div class="p-inputgroup">
+                            <input type="text" pInputText id="name" formControlName="name" autofocus />
+                            <small class="p-invalid" *ngIf="submitted && !name">Name is required.</small>       
+                        </div>
+                    </div>
+                    <div class="p-field p-col">
+                        <div class="p-inputgroup">
+                            <input type="text" pInputText id="birth" formControlName="birth"/>  
+                        </div>
                     </div>
                 </div>
-                <div class="p-field p-col">
-                    <p-calendar [showIcon]="true" inputId="icon"  [(ngModel)]="user.birth"></p-calendar>
+    
+                <div class="p-grid p-fluid">
+                    <div class="p-col-6 p-md-6">
+                        <div class="p-inputgroup">
+                            <span class="p-inputgroup-addon"><p-checkbox></p-checkbox></span>
+                            <input type="text" pInputText formControlName="phone1">
+                            <small class="p-invalid" *ngIf="submitted && !phone1">First phone is required.</small>     
+                        </div>
+                    </div>
+                    <div class="p-col-6 p-md-6">
+                        <div class="p-inputgroup">
+                            <span class="p-inputgroup-addon"><p-checkbox></p-checkbox></span>
+                            <input type="text" pInputText formControlName="phone2">
+                            <small class="p-invalid" *ngIf="submitted && !phone2">Second phone is required.</small>       
+                        </div>
+                    </div>
+                </div>
+    
+            <div class="p-grid p-fluid">
+                <div class="p-col-12 p-md-12">
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon"><p-checkbox></p-checkbox></span>
+                        <input type="text" pInputText formControlName="email1">
+                        <small class="p-invalid" *ngIf="submitted && email1">First email is required.</small>       
+                    </div>
                 </div>
             </div>
-
-        <div class="p-grid p-fluid">
-            <div class="p-col-6 p-md-6">
-                <div class="p-inputgroup">
-                    <span class="p-inputgroup-addon"><p-checkbox></p-checkbox></span>
-                    <input type="text" pInputText [(ngModel)]="user.phone1" formControlName="phone1">
-                    <small class="p-invalid" *ngIf="submitted && !user.phone1">First phone is required.</small>     
+    
+            <div class="p-grid p-fluid">
+                <div class="p-col-12 p-md-12">
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon"><p-checkbox></p-checkbox></span>
+                        <input type="text" pInputText formControlName="email2">
+                        <small class="p-invalid" *ngIf="submitted && !email2">Second email is required.</small>         
+                    </div>
                 </div>
             </div>
-            <div class="p-col-6 p-md-6">
-                <div class="p-inputgroup">
-                    <span class="p-inputgroup-addon"><p-checkbox></p-checkbox></span>
-                    <input type="text" pInputText [(ngModel)]="user.phone2" formControlName="phone2">
-                    <small class="p-invalid" *ngIf="submitted && !user.phone2">Second phone is required.</small>       
+    
+            <div class="p-grid p-fluid">
+                <div class="p-col-8 p-md-8">
+                    <div class="p-inputgroup">
+                        <input type="text" pInputText formControlName="adress">         
+                    </div>
+                </div>
+                <div class="p-col-4 p-md-4" style="padding: 0.5rem !important;">
+                    <div class="p-inputgroup">
+                        <input type="text" pInputText formControlName="postcode">         
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <div class="p-grid p-fluid">
-            <div class="p-col-12 p-md-12">
-                <div class="p-inputgroup">
-                    <span class="p-inputgroup-addon"><p-checkbox></p-checkbox></span>
-                    <input type="text" pInputText [(ngModel)]="user.email1" required formControlName="email1">
-                    <small class="p-invalid" *ngIf="submitted && !user.email1">First email is required.</small>       
-                </div>
-            </div>
-        </div>
-
-        <div class="p-grid p-fluid">
-            <div class="p-col-12 p-md-12">
-                <div class="p-inputgroup">
-                    <span class="p-inputgroup-addon"><p-checkbox></p-checkbox></span>
-                    <input type="text" pInputText [(ngModel)]="user.email2" formControlName="email2">
-                    <small class="p-invalid" *ngIf="submitted && !user.email2">Second email is required.</small>         
-                </div>
-            </div>
-        </div>
-
-        <div class="p-grid p-fluid">
-            <div class="p-col-8 p-md-8">
-                <div class="p-inputgroup">
-                    <input type="text" pInputText [(ngModel)]="user.adress" formControlName="adress">         
-                </div>
-            </div>
-            <div class="p-col-4 p-md-4" style="padding: 0.5rem !important;">
-                <div class="p-inputgroup">
-                    <input type="text" pInputText [(ngModel)]="user.postcode" formControlName="postcode">         
-                </div>
-            </div>
-        </div>
-
-      </div>
+          </div>
+        </form>
     </ng-template> 
     <ng-template pTemplate="footer">
         <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideForm()"></button>
