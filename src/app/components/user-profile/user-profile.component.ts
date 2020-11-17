@@ -32,6 +32,17 @@ export class UserProfileComponent implements OnInit {
     this.route.params.subscribe((params: Params) => {
       this.id = params['id'];
       this.getDataFromDatabase();
+
+      this.editUserForm = new FormGroup({
+        name: new FormControl('', [Validators.pattern(/[A-z]/), Validators.required]),
+        birth: new FormControl(''),
+        phone1: new FormControl('', [Validators.pattern(/[0-9]/), Validators.required]),
+        phone2: new FormControl('', [Validators.pattern(/[0-9]/), Validators.required]),
+        email1: new FormControl('', [Validators.email]),
+        email2: new FormControl('', [Validators.email]),
+        adress: new FormControl(''),
+        postcode: new FormControl('', [Validators.pattern(/[0-9]/)]),
+      });
     });
   }
 
@@ -49,14 +60,15 @@ export class UserProfileComponent implements OnInit {
 					id: e.payload.doc.id,
 					...e.payload.doc.data() as UserData
 				}
-			}).filter(e => {return e.id === this.id});
+      }).filter(e => {return e.id === this.id});
+      this.editForm();
     });
-    this.editForm();
   }
   
   editUser() {
     this.userForm = true;
-    this.user = this.currentUser[0]
+    this.user = this.currentUser[0];
+    Object.keys(this.user).forEach((key) => {this.editUserForm.get(key)?.setValue(this.user[key])});
   }
 
   deleteUser() {
@@ -70,16 +82,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   editForm() {
-    this.editUserForm = new FormGroup({
-        name: new FormControl('', [Validators.pattern(/[A-z]/), Validators.required]),
-        birth: new FormControl(''),
-        phone1: new FormControl('', [Validators.pattern(/[0-9]/), Validators.required]),
-        phone2: new FormControl('', [Validators.pattern(/[0-9]/), Validators.required]),
-        email1: new FormControl('', [Validators.email]),
-        email2: new FormControl('', [Validators.email]),
-        adress: new FormControl(''),
-        postcode: new FormControl('', [Validators.pattern(/[0-9]/)]),
-    });
+
   }
 
   saveForm() {
