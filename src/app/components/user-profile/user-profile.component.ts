@@ -5,7 +5,6 @@ import {FormGroup, FormControl, Validators} from '@angular/forms';
 import { CrudService } from 'src/app/common/servicies/crud.service';
 import { UserData } from 'src/app/common/utils/user';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { createLessThan } from 'typescript';
 
 @Component({
   selector: 'app-user-profile',
@@ -44,26 +43,19 @@ export class UserProfileComponent implements OnInit {
 					...e.payload.doc.data() as UserData
 				}
 			}).filter(e => {return e.id === this.id});
-      console.log(this.currentUser);
     });
   }
   
-  editUser(user: UserData) {
-    this.user = {...user};
+  editUser() {
+    this.crudService.editableUser = this.currentUser;
     this.userForm = true;
   }
-  
-  deleteUser(user: UserData) {
-    this.confirmationService.confirm({
-        message: 'Are you sure you want to delete ' + user.name + '?',
-        header: 'Confirm',
-        icon: 'pi pi-exclamation-triangle',
-        accept: () => {
-            this.crudService.deleteUser(this.id);
-            this.messageService.add({severity:'success', summary: 'Successful', detail: 'User Deleted', life: 3000});
-        },
-    });
+
+  deleteUser() {
+    this.crudService.deleteUser(this.id);
+    this.router.navigate(['/main']);
   }
+
 
   hideForm() {
     this.userForm = false;

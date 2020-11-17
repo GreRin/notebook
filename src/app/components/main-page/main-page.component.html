@@ -8,13 +8,15 @@
         <ng-template pTemplate="header">
             <tr>
                 <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
+                <th>Phone</th>
+                <th>Email</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-user >
             <tr [routerLink]="['/main', user.id]">
                 <td>{{ user.name }}</td>
-                <td>{{ user.phone }}</td>
-                <td>{{ user.email }}</td>
+                <td>{{ user.phone1 }}</td>
+                <td>{{ user.email1 }}</td>
             </tr>
         </ng-template>
         <ng-template pTemplate="summary">

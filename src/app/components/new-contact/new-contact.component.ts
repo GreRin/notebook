@@ -11,13 +11,19 @@ import { UserData } from '../../common/utils/user';
 })
 export class NewContactComponent implements OnInit {
   closeResult: string;
-	name: any;
-  phone: any;
-  email: any;
+  name: any;
+  birth?:Date;
+  phone1: any;
+  phone2: any;
+  email1: any;
+  email2: any;
+  adress?:string;
+  postcode?:number;
 	isSubmitted = false;
 	newUserForm: FormGroup;
   userData: UserData;
   sortedQuestions: string[];
+  value: Date;
 
   constructor(
     private router: Router,
@@ -30,9 +36,14 @@ export class NewContactComponent implements OnInit {
 
   createNewQuestion() {
 		this.newUserForm = new FormGroup({
-			name: new FormControl("", [Validators.pattern(/[A-z]/)]),
-      phone: new FormControl("", [Validators.pattern(/[0-9]/)]),
-      email: new FormControl("", [Validators.email])
+      name: new FormControl("", [Validators.pattern(/[A-z]/)]),
+      birth: new FormControl(""),
+      phone1: new FormControl("", [Validators.pattern(/[0-9]/)]),
+      phone2: new FormControl("", [Validators.pattern(/[0-9]/)]),
+      email1: new FormControl("", [Validators.email]),
+      email2: new FormControl("", [Validators.email]),
+      adress: new FormControl(""),
+      postcode: new FormControl("", [Validators.pattern(/[0-9]/)])
     });
 	}
 
@@ -43,8 +54,13 @@ export class NewContactComponent implements OnInit {
     }
     this.userData = {
       name: value.name,
-      phone: value.phone,
-      email: value.email
+      birth: new Date(value.birth),
+      phone1: value.phone1,
+      phone2: value.phone2,
+      email1: value.email1,
+      email2: value.email2,
+      adress: value.adress,
+      postcode: value.postcode
     }
 
     this.crudService.createNewUser(this.userData)

@@ -17,18 +17,66 @@
             <div class="modal-body">
                 <form [formGroup]="newUserForm" validate (ngSubmit)="onSubmit(newUserForm.value)">
                     <div class="ui-fluid">
-                        <span class="p-float-label p-mb-3">
-                            <input id="firstname" type="text" pInputText formControlName="name" style="width: 100%"> 
-                            <label for="firstname">Username</label>
-                        </span>
-                        <span class="p-float-label p-mb-3">
-                            <input id="phone" type="text" pInputText formControlName="phone" style="width: 100%"> 
-                            <label for="phone">Priority phone</label>
-                        </span>
-                        <span class="p-float-label">
-                            <input id="email" type="text" pInputText formControlName="email" style="width: 100%"> 
-                            <label for="email">Priority email</label>
-                        </span>
+                        <div class="p-fluid p-formgrid p-grid">
+                            <div class="p-field p-col">
+                                <div class="p-inputgroup">
+                                    <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+                                    <input type="text" pInputText placeholder="Username" formControlName="name">         
+                                </div>
+                            </div>
+                            <div class="p-field p-col">
+                                <div class="p-inputgroup">
+                                    <span class="p-inputgroup-addon"><i class="pi pi-calendar"></i></span>
+                                    <input type="text" pInputText placeholder="Date of birth" formControlName="birth"> 
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-grid p-fluid">
+                            <div class="p-col-6 p-md-6">
+                                <div class="p-inputgroup">
+                                    <span class="p-inputgroup-addon"><p-checkbox></p-checkbox></span>
+                                    <input type="text" pInputText placeholder="First phone" formControlName="phone1">         
+                                </div>
+                            </div>
+                            <div class="p-col-6 p-md-6">
+                                <div class="p-inputgroup">
+                                    <span class="p-inputgroup-addon"><p-checkbox></p-checkbox></span>
+                                    <input type="text" pInputText placeholder="Secondary phone" formControlName="phone2">         
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-grid p-fluid">
+                            <div class="p-col-12 p-md-12">
+                                <div class="p-inputgroup">
+                                    <span class="p-inputgroup-addon"><p-checkbox></p-checkbox></span>
+                                    <input type="text" pInputText placeholder="First email" formControlName="email1">         
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-grid p-fluid">
+                            <div class="p-col-12 p-md-12">
+                                <div class="p-inputgroup">
+                                    <span class="p-inputgroup-addon"><p-checkbox></p-checkbox></span>
+                                    <input type="text" pInputText placeholder="Second email" formControlName="email2">         
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-grid p-fluid">
+                            <div class="p-col-8 p-md-8">
+                                <div class="p-inputgroup">
+                                    <input type="text" pInputText placeholder="Adress" formControlName="adress">         
+                                </div>
+                            </div>
+                            <div class="p-col-4 p-md-4" style="padding: 0.5rem !important;">
+                                <div class="p-inputgroup">
+                                    <input type="text" pInputText placeholder="ZIP" formControlName="postcode">         
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button pButton 

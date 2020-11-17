@@ -21,9 +21,9 @@ export class CrudService {
     	return this.firestore.collection('users').snapshotChanges();
 	}
 
-	// updateUser(editableQuestion) {
-	// 	this.firestore.doc(`users/${editableQuestion.id}`).update(editableQuestion);
-	// }
+	updateUser(editableUser) {
+		this.firestore.doc(`users/${editableUser.id}`).update(editableUser);
+	}
 
 	deleteUser(userId) {
 		this.firestore.collection('users').doc(userId).delete();
